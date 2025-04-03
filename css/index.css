@@ -1,0 +1,118 @@
+header{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+header span a{
+    color: black;
+    width: min-content;
+}
+header .select{
+    border-bottom: 2px black solid;
+}
+main{
+    height: 40vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+main .titulo{
+    font-family: 'Merriweather', serif;
+}
+.dinero{
+    font-size: 2em;
+    height: min-content;
+}
+.div_sec, .transacciones{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+.transacciones{
+    flex-direction: column;
+    margin-top: 2vh;
+}
+.form_div{
+    width: 80%;
+    border: 2px solid rgb(74, 74, 74);
+    border-radius: 10px;
+}
+.preView{
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    cursor: pointer;
+}
+.fullView{
+    padding: 5%;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+form div{
+    display: flex;
+    gap: 5%;
+}
+form div input[type=text]{
+    height: 4vh;
+    width: 65%;
+    border-radius: 10px;
+    border: 2px solid rgb(74, 74, 74);
+    padding: 2vw;
+}
+form div input[type=number]{
+    height: 4vh;
+    border-radius: 10px;
+    width: 30%;    
+    border: 2px solid rgb(74, 74, 74);
+    padding: 2vw;
+
+}
+form input[type=submit]{
+    align-self: center;
+    padding: 2vw;
+    background-color: transparent;
+    border: 2px solid #B25068;
+    margin-top: 1vh;
+    border-radius: 10px;
+}
+.transaccion{
+    width: 80%;
+    height: 7vh;
+    padding: 5px;
+    margin-top: 1vh;
+    border: 2px solid rgb(74, 74, 74);
+    border-radius: 10px;
+    align-self: center;
+}
+.uno{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.fecha{
+    display: flex;
+    font-size: .8em;
+    margin-left: 7%;
+}
+.transaccion .uno div {
+    display: flex;
+    align-self: center;
+    justify-self: center;
+}
+.rojo{
+    color: red;
+}
+.verde{
+    color: greenyellow;
+}
+.none{
+    display: none;
+}

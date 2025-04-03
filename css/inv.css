@@ -1,0 +1,86 @@
+header{
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+header span a{
+    color: black;
+    width: min-content;
+}
+header .select{
+    border-bottom: 2px black solid;
+}
+.dinero{
+    font-size: 2em;
+    height: min-content;
+}
+main{
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+main .titulo{
+    font-family: 'Merriweather', serif;
+}
+section{
+    width: 100%;
+    height: 40vh;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    flex-direction: column-reverse;
+}
+form{
+    width: 75vw;
+    border: 2px solid rgb(74, 74, 74);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+section input[type=submit]{
+    align-self: flex-end;
+    margin-right: 3vw;
+    margin-bottom: 15px;
+}
+.preView{
+    width: 100%;
+    display: flex;
+    align-self: center;
+    justify-self: center;
+    cursor: pointer;
+}
+.div_nya{
+    display: flex;
+    gap: 5vw;
+    align-self: center;
+    justify-self: center;
+    margin-top: 10px ;
+    margin-bottom: 10px;
+   width: 85%; 
+}
+b{
+    font-size: x-small;
+}
+.div_nya_1{
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+.div_nya_2{
+    width: 45%;
+}
+input[type=number]{
+    text-align: center;
+    width: 80%;
+}
+.none{
+    display: none;
+}
