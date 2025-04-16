@@ -36,7 +36,7 @@
         <span><a href="./inventario/">Inventario</a></span>
     </header>
     <main>
-        <span class="titulo">Dinero total:</span>
+        <span class="titulo">Dinero en caja:</span>
         <span class="dinero"><?php echo $total ?></span>
     </main>
     <section class="div_sec">
@@ -59,7 +59,7 @@
     <section class="transacciones">
 <?php
 foreach (@$operaciones as $operacion) {
-if ($operacion['MontoOperación'] >= 0){
+if ($operacion['montoOperacion'] >= 0){
     $class = "verde";
 }else{
     $class = "rojo";
@@ -69,11 +69,11 @@ if ($operacion['MontoOperación'] >= 0){
         <div class="uno">
             <div>
                 <img src="./img/down.svg" >
-                <span><?php echo $operacion['Desc'] ?></span>
+                <span><?php echo $operacion['descripcion'] ?></span>
             </div>
-            <span class="<?php echo $class ?>"><?php echo $operacion['MontoOperación'] ?></span>
+            <span class="<?php echo $class ?>"><?php echo $operacion['montoOperacion'] ?></span>
         </div>
-        <span class="fecha"><?php echo $operacion['Fecha'] ?></span>
+        <span class="fecha"><?php echo $operacion['fecha'] ?></span>
     </div>
 <?php
 }

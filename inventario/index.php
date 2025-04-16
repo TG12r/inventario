@@ -1,6 +1,6 @@
 <?php
     // Incluye los archivos necesarios
-    include_once "../include/invDb.php";
+    include_once "../include/db.php";
     include_once "../include/inventario.php";
 
     // Instancia la clase Inventario

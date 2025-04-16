@@ -14,15 +14,12 @@ class inventario extends Db{
 
 
     function nuevaOperacion($_array) {
-        $data = $this->getData();
 
         date_default_timezone_set('America/Panama');
-        $id = $this->generateUniqueId($data);
-        $data[] = [
-            'id' => $id,
+        $data = [
             'Leche' => htmlspecialchars($_array['Leche']),
             'Lecherita' => htmlspecialchars($_array['Lecherita']),
-            'C.Leche' => htmlspecialchars($_array['C.Leche']),
+            'CLeche' => htmlspecialchars($_array['C.Leche']),
             'Paquetatos' => htmlspecialchars($_array['Paquetatos']),
             'Gelatina' => htmlspecialchars($_array['Gelatina']),
             'Envase' => htmlspecialchars($_array['Envase']),
@@ -32,29 +29,29 @@ class inventario extends Db{
             'Guantes' => htmlspecialchars($_array['Guantes']),
             'Fecha' => date('d-m-Y', time()),
         ];
-
-        $this->saveData($data);
-        return true;
+        $querry = $this->connect()->prepare("INSERT INTO invDb (leche, Lecherita, CLeche, Paquetatos, Gelatina, Envases, Gorros, CubreBocas, Cucharas, Guantes, Fecha) VALUES (:Leche, :Lecherita, :CLeche, :Paquetatos, :Gelatina, :Envase, :Gorros, :CubreBocas, :Cucharas, :Guantes, :Fecha)");
+        if($querry->execute($data)){
+            return true;
+        }
+        return false;
     }
     function verOperaciones() {
-        $data = $this->getData();
-
-        // Ordenar las operaciones por id de manera descendente
-        usort($data, function($a, $b) {
-            return $b['id'] - $a['id'];
-        });
-
-        return $data;
+        $data = $this->connect()->prepare("SELECT * FROM invDb ORDER BY id DESC");
+        if($data->execute()){
+            $data = $data->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
+        }
+        return [];
     }
     function valuesForm(){
         $data = $this->verOperaciones()[0];
         $_array = [
-            'Leche' => ($data['Leche'] != 0 ) ? 'value="'.$data['Leche'].'"' : 'value=""',
+            'Leche' => ($data['leche'] != 0 ) ? 'value="'.$data['leche'].'"' : 'value=""',
             'Lecherita' => ($data['Lecherita'] != 0 ) ? 'value="'.$data['Lecherita'].'"' : 'value=""',
-            'C.Leche' => ($data['C.Leche'] != 0 ) ? 'value="'.$data['C.Leche'].'"' : 0,
+            'C.Leche' => ($data['CLeche'] != 0 ) ? 'value="'.$data['CLeche'].'"' : 0,
             'Paquetatos' => ($data['Paquetatos'] != 0 ) ? 'value="'.$data['Paquetatos'].'"' : 'value=""',
             'Gelatina' => ($data['Gelatina'] != 0) ? 'value="'.$data['Gelatina'].'"' : 'value=""',
-            'Envase' => ($data['Envase'] != 0) ? 'value="'.$data['Envase'].'"' : 'value=""',
+            'Envase' => ($data['Envases'] != 0) ? 'value="'.$data['Envases'].'"' : 'value=""',
             'Gorros' => ($data['Gorros'] != 0) ? 'value="'.$data['Gorros'].'"' : 'value=""',
             'CubreBocas' => ($data['CubreBocas'] != 0) ? 'value="'.$data['CubreBocas'].'"' : 'value=""',
             'Cucharas' => ($data['CubreBocas'] != 0) ? 'value="'.$data['Cucharas'].'"' : 'value=""',
@@ -66,25 +63,17 @@ class inventario extends Db{
         $Values = $this->verOperaciones()[0];
         $total_inv = 0;
 
-        $total_inv += $Values['Leche']*ValorLeche;
+        $total_inv += $Values['leche']*ValorLeche;
         $total_inv += $Values['Lecherita']*ValorGramoLecherita;
-        $total_inv += $Values['C.Leche']*ValorCremaLeche;
+        $total_inv += $Values['CLeche']*ValorCremaLeche;
         $total_inv += $Values['Paquetatos']*ValorPaquetato;
         $total_inv += $Values['Gelatina']*ValorGramoGelatina;
-        $total_inv += $Values['Envase']*ValorEnvases;
+        $total_inv += $Values['Envases']*ValorEnvases;
         $total_inv += $Values['Gorros']*ValorGorro;
         $total_inv += $Values['CubreBocas']*ValorCubreBocas;
         $total_inv += $Values['Cucharas']*ValorCucharas;
         $total_inv += $Values['Guantes']*ValorGuantes;
 
         return $total_inv;
-    }
-    private function generateUniqueId($data) {
-        if (!empty($data)) {
-            $ids = array_column($data, 'id');
-            return max($ids) + 1;
-        } else {
-            return 1; // Si no hay elementos, comenzamos desde 1.
-        }
     }
 }

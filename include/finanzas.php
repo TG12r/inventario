@@ -1,52 +1,38 @@
 <?php
 
 class Finanzas extends Db {
+    function Total() {
+        $data = $this->connect()->prepare("SELECT total FROM inventario");
+        
+        if($data->execute()){
+            return $data->fetch(PDO::FETCH_ASSOC)['total'];
+        }
+        return 0;
+    }
     function nuevaOperacion($Desc, $Monto) {
-        $data = $this->getData();
         
         $total = $this->Total() + $Monto;
         date_default_timezone_set('America/Panama');
-        $id = $this->generateUniqueId($data);
-        $data[] = [
-            'id' => $id,
-            'Desc' => htmlspecialchars($Desc),
-            'MontoOperación' => htmlspecialchars($Monto),
-            'Fecha' => date('d-m-Y', time()),
-            'TotalDulces' => $total,
+        $querry = $this->connect()->prepare("INSERT INTO inventario (descripcion, montoOperacion, fecha, total) VALUES (:descripcion, :montoOperacion, :fecha, :total)");
+        $data = [
+            'descripcion' => htmlspecialchars($Desc),
+            'montoOperacion' => htmlspecialchars($Monto),
+            'fecha' => date('d-m-Y', time()),
+            'total' => $total,
         ];
-
-        $this->saveData($data);
-        return true;
-    }
-
-    function Total() {
-        $data = $this->getData();
-
-        if (!empty($data)) {
-            $lastEntry = end($data);
-            return $lastEntry['TotalDulces'];
+        if($querry->execute($data) != false){
+            return true;
         }
-
-        return 0;
+        return false;
     }
+
 
     function verOperaciones() {
-        $data = $this->getData();
-
-        // Ordenar las operaciones por id de manera descendente
-        usort($data, function($a, $b) {
-            return $b['id'] - $a['id'];
-        });
-
-        return $data;
-    }
-
-    private function generateUniqueId($data) {
-        if (!empty($data)) {
-            $ids = array_column($data, 'id');
-            return max($ids) + 1;
-        } else {
-            return 1; // Si no hay elementos, comenzamos desde 1.
+        $data = $this->connect()->prepare("SELECT * FROM inventario ORDER BY id DESC");
+        if($data->execute()){
+            $data = $data->fetchAll(PDO::FETCH_ASSOC);
+            return $data;
         }
+        return [];
     }
 }

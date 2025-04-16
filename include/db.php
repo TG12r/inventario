@@ -1,18 +1,30 @@
 <?php
 
-class Db {
-    protected $dataFile = 'finanzas.json';
+class DB{
+    private $host;
+    private $db;
+    private $user;
+    private $password;
+    private $charset;
 
-    public function getData() {
-        if (file_exists($this->dataFile)) {
-            $data = file_get_contents($this->dataFile);
-            return json_decode($data, true);
-        }
-        return [];
+    public function __construct(){
+        $this->host     = 'shuttle.proxy.rlwy.net';
+        $this->db       = 'railway';
+        $this->user     = 'root';
+        $this->password = 'BPvFlgOrBKTsjrgSIdYgNjQnNoRBasrh';
+        $this->charset  = 'utf8mb4';
     }
 
-    public function saveData($data) {
-        $json = json_encode($data);
-        file_put_contents($this->dataFile, $json);
+    function connect(){
+        try{
+            $dsn = "mysql:host={$this->host};port=39095;dbname={$this->db};charset={$this->charset}";
+            $pdo = new PDO($dsn, $this->user, $this->password);
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            return $pdo;
+        }catch(PDOException $e){
+            print_r('Error connection: ' . $e->getMessage());
+        }   
     }
 }
+
+?>
