@@ -2,7 +2,7 @@
 
 class Finanzas extends Db {
     function Total() {
-        $data = $this->connect()->prepare("SELECT total FROM inventario");
+        $data = $this->connect()->prepare("SELECT total FROM inventario ORDER BY id DESC LIMIT 1");
         
         if($data->execute()){
             return $data->fetch(PDO::FETCH_ASSOC)['total'];

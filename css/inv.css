@@ -66,6 +66,11 @@ section input[type=submit]{
     margin-bottom: 10px;
    width: 85%; 
 }
+.div_nya_1 span{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 b{
     font-size: x-small;
 }
