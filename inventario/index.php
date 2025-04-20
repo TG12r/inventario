@@ -46,7 +46,7 @@
     </header>
     <main>
 		<span class="titulo">Dinero inv:</span>
-        <span class="dinero"><?php echo $_inventario->invValor() ?></span>
+        <span class="dinero"><?php echo round($_inventario->invValor(), 1) ?></span>
 	</main>
 	<section>
 		<form action="./" method="POST">

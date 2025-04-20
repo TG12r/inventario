@@ -1,10 +1,10 @@
 <?php
-const ValorLeche = 3000;
-const ValorGramoLecherita = 10.77;
-const ValorCremaLeche = 2000;
-const ValorGramoGelatina = 0;
+const ValorLeche = 2700;
+const ValorGramoLecherita = 11.96;
+const ValorCremaLeche = 2200;
+const ValorGramoGelatina = 0.0136;
 const ValorPaquetato = 1000;
-const ValorEnvases = 330;
+const ValorEnvases = 490;
 const ValorCucharas = 25.5;
 const ValorGorro = 0;
 const ValorCubreBocas = 0;
