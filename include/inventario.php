@@ -54,7 +54,7 @@ class inventario extends Db{
             'Envase' => ($data['Envases'] != 0) ? 'value="'.$data['Envases'].'"' : 'value=""',
             'Gorros' => ($data['Gorros'] != 0) ? 'value="'.$data['Gorros'].'"' : 'value=""',
             'CubreBocas' => ($data['CubreBocas'] != 0) ? 'value="'.$data['CubreBocas'].'"' : 'value=""',
-            'Cucharas' => ($data['CubreBocas'] != 0) ? 'value="'.$data['Cucharas'].'"' : 'value=""',
+            'Cucharas' => ($data['Cucharas'] != 0) ? 'value="'.$data['Cucharas'].'"' : 'value=""',
             'Guantes' => ($data['Guantes'] != 0) ? 'value="'.$data['Guantes'].'"' : 'value=""',
         ];
         return $_array;
