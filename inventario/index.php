@@ -18,7 +18,8 @@
             'Gorros' => ($_POST['Gorros'] != '') ? htmlspecialchars($_POST['Gorros']) : 0,
             'CubreBocas' => ($_POST['CubreBocas'] != '') ? htmlspecialchars($_POST['CubreBocas']) : 0,
             'Cucharas' => ($_POST['Cucharas'] != '') ? htmlspecialchars($_POST['Cucharas']) : 0,
-            'Guantes' => ($_POST['Guantes'] != '') ? htmlspecialchars($_POST['Guantes']) : 0
+            'Guantes' => ($_POST['Guantes'] != '') ? htmlspecialchars($_POST['Guantes']) : 0,
+            'Postres' => ($_POST['Postres'] != '') ? htmlspecialchars($_POST['Postres']) : 0
         ];
         $_inventario->nuevaOperacion($_array);
     }
@@ -67,7 +68,7 @@
                     <span>Cubre bocas <b>#</b></span>
                     <span>Cucharas <b>#</b></span>
                     <span>Guantes <b>#</b></span>
-
+                    <span>Postres <b>#</b></span>
 				</div>
 				<div class="div_nya_2">
 					<input type="number" name="Leche" <?php echo $Values['Leche'] ?> placeholder="0">
@@ -80,6 +81,7 @@
 					<input type="number" name="CubreBocas" <?php echo $Values['CubreBocas'] ?> placeholder="0">
                     <input type="number" name="Cucharas" <?php echo $Values['Cucharas'] ?> placeholder="0">
                     <input type="number" name="Guantes" <?php echo $Values['Guantes'] ?> placeholder="0">
+                    <input type="number" name="Postres" <?php echo $Values['Postres'] ?> placeholder="0">
 				</div><br>
 			</div>
             <input type="submit" id="submit" value="Guardar" class="none">

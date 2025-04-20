@@ -9,6 +9,7 @@ const ValorCucharas = 25.5;
 const ValorGorro = 0;
 const ValorCubreBocas = 0;
 const ValorGuantes = 0;
+const ValorPostres = 5000;
 
 class inventario extends Db{
 
@@ -27,9 +28,10 @@ class inventario extends Db{
             'CubreBocas' => htmlspecialchars($_array['CubreBocas']),
             'Cucharas' => htmlspecialchars($_array['Cucharas']),
             'Guantes' => htmlspecialchars($_array['Guantes']),
+            'Postres' => htmlspecialchars($_array['Postres']),
             'Fecha' => date('d-m-Y', time()),
         ];
-        $querry = $this->connect()->prepare("INSERT INTO invDb (leche, Lecherita, CLeche, Paquetatos, Gelatina, Envases, Gorros, CubreBocas, Cucharas, Guantes, Fecha) VALUES (:Leche, :Lecherita, :CLeche, :Paquetatos, :Gelatina, :Envase, :Gorros, :CubreBocas, :Cucharas, :Guantes, :Fecha)");
+        $querry = $this->connect()->prepare("INSERT INTO invDb (leche, Lecherita, CLeche, Paquetatos, Gelatina, Envases, Gorros, CubreBocas, Cucharas, Guantes, Postres, Fecha) VALUES (:Leche, :Lecherita, :CLeche, :Paquetatos, :Gelatina, :Envase, :Gorros, :CubreBocas, :Cucharas, :Guantes, :Postres, :Fecha)");
         if($querry->execute($data)){
             return true;
         }
@@ -56,6 +58,7 @@ class inventario extends Db{
             'CubreBocas' => ($data['CubreBocas'] != 0) ? 'value="'.$data['CubreBocas'].'"' : 'value=""',
             'Cucharas' => ($data['Cucharas'] != 0) ? 'value="'.$data['Cucharas'].'"' : 'value=""',
             'Guantes' => ($data['Guantes'] != 0) ? 'value="'.$data['Guantes'].'"' : 'value=""',
+            'Postres' => ($data['Postres'] != 0) ? 'value="'.$data['Postres'].'"' : 'value=""',
         ];
         return $_array;
     }
@@ -73,7 +76,7 @@ class inventario extends Db{
         $total_inv += $Values['CubreBocas']*ValorCubreBocas;
         $total_inv += $Values['Cucharas']*ValorCucharas;
         $total_inv += $Values['Guantes']*ValorGuantes;
-
+        $total_inv += $Values['Postres']*ValorPostres;
         return $total_inv;
     }
 }
