@@ -24,7 +24,7 @@
     <title>Dulces Ronroneos</title>
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/index.css">
-    <link rel="shortcut icon" href="/img/Dulces Ronroneos(6).png" type="image/x-icon">
+    <link rel="shortcut icon" href="/img/logo.png" type="image/x-icon">
     <script>
         if (window.history.replaceState) { // verificamos disponibilidad
             window.history.replaceState(null, null, window.location.href);
